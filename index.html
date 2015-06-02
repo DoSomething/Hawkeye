@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Campaign Timing Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+  <!-- Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <style>
+
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .divider {
+      height: 2px;
+      background-color: #111;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    .dispkay-none {
+      display: none;
+    }
+
+    .slot {
+      border: 1px solid #111111;
+      height: 100%;
+      padding: 0;
+    }
+
+    .campaign-row {
+      height: 32px;
+    }
+
+    .campaign-name {
+      font-size: 18px;
+      padding-top: 8px;
+    }
+
+    .campaign-listing {
+      padding-top: 16px;
+    }
+
+    /* Cause Colors */
+    .animals {
+      background-color: #001f3f;
+    }
+
+    .bullying {
+      background-color: #0074D9;
+    }
+
+    .disasters {
+      background-color: #7FDBFF;
+    }
+
+    .discrimination {
+      background-color: #39CCCC;
+    }
+
+    .education {
+      background-color: #B10DC9;
+    }
+
+    .environment {
+      background-color: #F012BE;
+    }
+
+    .health {
+      background-color: #85144b;
+    }
+
+    .poverty {
+      background-color: #FF4136;
+    }
+
+    .relationships {
+      background-color: #FF851B;
+    }
+
+  </style>
+
+</html>
+<body>
+  <div class="container-fluid">
+    <h1>Campaign Timing Tool</h1>
+  </div>
+  <div class="row divider"></div>
+  <div class="container-fluid view-month">
+    <h1 class="view-month_name">Current Month</h1>
+    <h3 class="view-month_close">Close month tab</h3>
+    <div class="card-container">
+      <div id="example_month_card" class="col-md-12">
+        <h1 class="campaign-card-name">Campaign Name</h1>
+        <p>More stuff about the specific campaign goes here.</p>
+        <p>And More Things</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid view-year">
+    <div class="row months">
+      <div class="col-md-1">
+        <h3>Months</h3>
+      </div>
+      <div class="col-md-11">
+        <div id="month_1" class="col-md-1 month">
+          <h1>Jan.</h1>
+        </div>
+        <div id="month_2" class="col-md-1 month">
+          <h1>Feb.</h1>
+        </div>
+        <div id="month_3" class="col-md-1 month">
+          <h1>Mar.</h1>
+        </div>
+        <div id="month_4" class="col-md-1 month">
+          <h1>Apr.</h1>
+        </div>
+        <div id="month_5" class="col-md-1 month">
+          <h1>May</h1>
+        </div>
+        <div id="month_6" class="col-md-1 month">
+          <h1>June</h1>
+        </div>
+        <div id="month_7" class="col-md-1 month">
+          <h1>July</h1>
+        </div>
+        <div id="month_8" class="col-md-1 month">
+          <h1>Aug.</h1>
+        </div>
+        <div id="month_9" class="col-md-1 month">
+          <h1>Sept.</h1>
+        </div>
+        <div id="month_10" class="col-md-1 month">
+          <h1>Oct.</h1>
+        </div>
+        <div id="month_11" class="col-md-1 month">
+          <h1>Nov.</h1>
+        </div>
+        <div id="month_12" class="col-md-1 month">
+          <h1>Dec.</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid campaign_hot-container">
+    <div class="row campaign">
+      <div class="col-md-1 campaign-row">
+        <h3 class="campaign-name">The Name</h3>
+      </div>
+      <div class="col-md-11 campaign-row">
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+        <div class="col-md-1 slot"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row divider"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+          <input type="text" class="form-control" aria-label="...">
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <div class="row campaign-listing-container">
+
+    </div>
+  </div>
+
+  <!-- All inline atm (lazyness), forgive me -->
+  <script>
+    $(document).on('ready', function() {
+
+      var $campaignContainer = $('.campaign_hot-container')
+      var $campaignListingContainer = $('.campaign-listing-container');
+      var $campaignCard = $('#example_month_card');
+
+      $campaignCard.hide();
+      $('.view-month').hide();
+
+      // Begin Generation //
+      // ---------------- //
+
+      var $campaign = $('.campaign');
+      $campaign.hide();
+      var campaigns = {};
+      var cause = ["animals", "bullying", "disasters", "discrimination", "education", "environment", "health", "poverty", "relationships"];
+      function generateCampaign() {
+        var start = getRandomInt(1, 12);
+        var end = start + getRandomInt(0, 1);
+        if(end > 12) {
+          end = 12;
+        }
+        return {
+          name: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
+          cause: cause[Math.floor(Math.random()*cause.length)],
+          startMonth: start,
+          endMonth: end,
+          hot: false,
+        }
+      }
+
+      function buildCampaignRowHTML(campaign) {
+        var $clone = $campaign.clone();
+        $clone.attr('id', campaign.name);
+        var $slots = $clone.find('.slot');
+        for(var x = campaign.startMonth - 1; x <= campaign.endMonth - 1; x++) {
+          var $slot = $($slots[x]);
+          $slot.addClass(campaign.cause);
+        }
+        $($clone.find('.campaign-name')[0]).text(campaign.name);
+        $campaignContainer.append($clone);
+        $clone.show();
+      }
+
+      function buildCampaignListingHTML(campaign) {
+        $campaignListingContainer.append('<h3 class="col-md-3 campaign-listing">' + campaign.name + '</h3>');
+      }
+
+      function buildCampaignCardHTML(campaign) {
+        var $newCard = $campaignCard.clone();
+        $($newCard.find('.campaign-card-name')).text(campaign.name);
+        $newCard.show();
+        var $cardContainer = $('.card-container');
+        $cardContainer.append($newCard);
+      }
+
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      for(var i = 0; i < 25; i++) {
+        var campaign = generateCampaign();
+        campaign.hot = true;
+        campaigns[campaign.name] = campaign;
+        buildCampaignRowHTML(campaign);
+      }
+
+      // Do another gen but do this one for like a 100 and stick in in the storage
+      for(var i = 0; i < 100; i++) {
+        var campaign = generateCampaign();
+        campaigns[campaign.name] = campaign;
+        buildCampaignListingHTML(campaign);
+      }
+
+      // -------------- //
+      // End generation //
+
+      $('body').on('click', '.slot', function() {
+        var name = $(this).parent().parent().attr('id');
+        var campaign = campaigns[name];
+        $(this).toggleClass(campaign.cause);
+      });
+
+      $('body').on('click', '.campaign-name', function() {
+        var $topElement = $(this).parent().parent();
+        var campaign = campaigns[$topElement.attr('id')];
+        $topElement.remove();
+        buildCampaignListingHTML(campaign);
+        campaign.hot = false;
+      });
+
+      $('body').on('click', '.campaign-listing', function() {
+        //TODO: Check if monthly view, if yes build the card as well and change the month
+        var campaign = campaigns[$(this).text()];
+        $(this).remove();
+        buildCampaignRowHTML(campaign);
+        campaign.hot = true;
+      });
+
+
+      $('.month').on('click', function() {
+        var month = $(this).attr('id').replace('month_', '');
+        var $viewMonth = $('.view-month');
+        var $cardContainer = $('.card-container');
+        $viewMonth.show();
+        $cardContainer.empty();
+        Object.keys(campaigns).forEach(function(key) {
+          var camp = campaigns[key];
+          if(camp.hot && (camp.startMonth == month || camp.endMonth == month)) {
+            buildCampaignCardHTML(camp);
+          }
+        });
+        //make it so when in month view adding a thing changes the month to the selected month
+      });
+
+      $('.view-month_close').on('click', function() {
+        $('.view-month').hide();
+      });
+
+    });
+  </script>
+</body>
