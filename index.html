@@ -293,6 +293,12 @@
       $('body').on('click', '.campaign-listing', function() {
         //TODO: Check if monthly view, if yes build the card as well and change the month
         var campaign = campaigns[$(this).text()];
+        if($('.view-month').is(":visible")) {
+          var diff = campaign.endMonth - campaign.startMonth;
+          campaign.startMonth = parseInt($('.view-month').attr('month'));
+          campaign.endMonth = campaign.startMonth + diff;
+          buildCampaignCardHTML(campaign);
+        }
         $(this).remove();
         buildCampaignRowHTML(campaign);
         campaign.hot = true;
@@ -302,6 +308,8 @@
       $('.month').on('click', function() {
         var month = $(this).attr('id').replace('month_', '');
         var $viewMonth = $('.view-month');
+        $('.view-month_name').text($(this).text());
+        $viewMonth.attr('month', month);
         var $cardContainer = $('.card-container');
         $viewMonth.show();
         $cardContainer.empty();
