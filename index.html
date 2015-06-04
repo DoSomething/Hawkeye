@@ -208,28 +208,6 @@
       $campaignCard.hide();
       $('.view-month').hide();
 
-      // Begin Generation //
-      // ---------------- //
-
-      var $campaign = $('.campaign');
-      $campaign.hide();
-      var campaigns = {};
-      var cause = ["animals", "bullying", "disasters", "discrimination", "education", "environment", "health", "poverty", "relationships"];
-      function generateCampaign() {
-        var start = getRandomInt(1, 12);
-        var end = start + getRandomInt(0, 1);
-        if(end > 12) {
-          end = 12;
-        }
-        return {
-          name: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
-          cause: cause[Math.floor(Math.random()*cause.length)],
-          startMonth: start,
-          endMonth: end,
-          hot: false,
-        }
-      }
-
       function buildCampaignRowHTML(campaign) {
         var $clone = $campaign.clone();
         $clone.attr('id', campaign.name);
@@ -257,6 +235,28 @@
 
       function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      // Begin Generation //
+      // ---------------- //
+
+      var $campaign = $('.campaign');
+      $campaign.hide();
+      var campaigns = {};
+      var cause = ["animals", "bullying", "disasters", "discrimination", "education", "environment", "health", "poverty", "relationships"];
+      function generateCampaign() {
+        var start = getRandomInt(1, 12);
+        var end = start + getRandomInt(0, 1);
+        if(end > 12) {
+          end = 12;
+        }
+        return {
+          name: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5),
+          cause: cause[Math.floor(Math.random()*cause.length)],
+          startMonth: start,
+          endMonth: end,
+          hot: false,
+        }
       }
 
       for(var i = 0; i < 25; i++) {
@@ -291,7 +291,6 @@
       });
 
       $('body').on('click', '.campaign-listing', function() {
-        //TODO: Check if monthly view, if yes build the card as well and change the month
         var campaign = campaigns[$(this).text()];
         if($('.view-month').is(":visible")) {
           var diff = campaign.endMonth - campaign.startMonth;
@@ -319,7 +318,6 @@
             buildCampaignCardHTML(camp);
           }
         });
-        //make it so when in month view adding a thing changes the month to the selected month
       });
 
       $('.view-month_close').on('click', function() {
