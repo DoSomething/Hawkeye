@@ -22,8 +22,14 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(3000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+var campaignFilter = require(__dirname + '/lib/campaign_filter.js');
+console.log("Importing campaigns");
+var campaignImporter = require(__dirname + '/lib/campaign_import.js')(function onImport(campaigns) {
+  global.CAMPAIGNS = campaigns;
+  console.log("Campaigns Imported");
+  server.listen(3000, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('Example app listening at http://%s:%s', host, port);
+  });
 });
