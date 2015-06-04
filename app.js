@@ -1,7 +1,10 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser')
 app.use(express.static('public'));
 app.use(express.static('node_modules/dosomething-neue/dist'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 var sassMiddleware = require('node-sass-middleware');
 var path = require('path');
@@ -22,7 +25,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var campaignFilter = require(__dirname + '/lib/campaign_filter.js');
+var campaignFilter = require(__dirname + '/lib/campaign_filter.js')(app);
 console.log("Importing campaigns");
 var campaignImporter = require(__dirname + '/lib/campaign_import.js')(function onImport(campaigns) {
   global.CAMPAIGNS = campaigns;
