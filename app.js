@@ -25,9 +25,11 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var campaignFilter = require(__dirname + '/lib/campaign_filter.js')(app);
+var libDir = __dirname + "/lib/";
+var campaignFilter = require(libDir + 'campaign_filter.js')(app);
+var campaignScheduler = require(libDir + 'campaign_scheduler.js')(app);
 console.log("Importing campaigns");
-var campaignImporter = require(__dirname + '/lib/campaign_import.js')(function onImport(campaigns) {
+var campaignImporter = require(libDir + 'campaign_import.js')(function onImport(campaigns) {
   global.CAMPAIGNS = campaigns;
   console.log("Campaigns Imported");
   server.listen(3000, function () {
