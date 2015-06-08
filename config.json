@@ -1,4 +1,4 @@
 {
-  "import_campaigns": false,
+  "import_campaigns_from_drupal": false,
   "mongo_url": "mongodb://localhost/"
 }
