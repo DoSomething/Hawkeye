@@ -1,3 +1,4 @@
 {
-  "import_campaigns": false
+  "import_campaigns": false,
+  "mongo_url": "mongodb://localhost/"
 }

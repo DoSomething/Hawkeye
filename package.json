@@ -12,6 +12,7 @@
     "body-parser": "^1.12.4",
     "dosomething-neue": "^6.4.9",
     "express": "^4.12.4",
+    "mongoose": "^4.0.5",
     "node-sass": "^3.1.2",
     "node-sass-middleware": "^0.8.0",
     "reload": "^0.1.0",
