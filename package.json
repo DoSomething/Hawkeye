@@ -1,5 +1,5 @@
 {
-  "name": "campaign-timing-prototype",
+  "name": "hawkeye",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -17,5 +17,8 @@
     "node-sass-middleware": "^0.8.0",
     "reload": "^0.1.0",
     "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
   }
 }
