@@ -33,7 +33,7 @@ Filters through all of the available campaigns based on the given parameters. No
 - Cause. (Eg: 'education')
 - Hours.
 - Action. (eg: 'make something')
-- isStaffPick. (1 = true, 0 = false)
+- isStaffPick. (1 = true, 2 = false)
 
 ## Configuration
 The current configuration is for runtime use, no sensitive credentials are in it at the moment. The config options are,
