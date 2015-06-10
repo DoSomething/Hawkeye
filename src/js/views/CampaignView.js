@@ -6,23 +6,21 @@ define([
   'jquery',
   'underscore',
   'backbone',
-], function ($, _, Backbone) {
+  '../templates/CampaignTemplate.html',
+], function ($, _, Backbone, CampaignTemplate) {
   'use strict';
-
-  // @TODO - Move template in to it's own file.
-  var campaignTemplate = _.template("<h3><%- title %></h3>");
 
   var CampaignView = Backbone.View.extend({
       // Will wrap each view in an li tag.
       tagName: "li",
 
       // Set the template.
-      template: campaignTemplate,
+      template: CampaignTemplate,
 
       // Called with instatiated.
       initialize: function () {
         console.log("model initialize");
-        console.log(this.model);
+        console.log(CampaignTemplate({title: "hi"}));
         this.listenTo(this.collection, 'reset', this.render);
       },
 

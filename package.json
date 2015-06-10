@@ -37,6 +37,7 @@
     "load-grunt-tasks": "^3.2.0",
     "lodash": "^3.9.3",
     "time-grunt": "^1.0.0",
+    "underscore-template-loader": "^0.2.5",
     "webpack": "^1.9.10",
     "webpack-dev-server": "^1.9.0"
   }

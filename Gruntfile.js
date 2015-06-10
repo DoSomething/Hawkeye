@@ -137,6 +137,7 @@ module.exports = function(grunt) {
               module: {
                   loaders: [
                       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+                      { test: /\.html/, loader: "underscore-template-loader" }
                   ]
               }
           },
