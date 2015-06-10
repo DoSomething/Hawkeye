@@ -2,10 +2,8 @@
  * Basic model to represent a campaign.
  */
 
-define(['jquery', 'backbone'], function ($, Backbone) {
-  'use strict';
+import Backbone from 'backbone';
 
-  var Campaign = Backbone.Model.extend({});
+var Campaign = Backbone.Model.extend({});
 
-  return Campaign;
-});
+export default Campaign;

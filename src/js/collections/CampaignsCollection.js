@@ -2,24 +2,22 @@
  * Creates the Campaigns collection.
  */
 
-define([
-  'jquery',
-  'backbone',
-  '../models/CampaignModel'], function ($, Backbone, Campaign) {
-  'use strict';
+import $ from 'jquery';
+import Backbone from 'backbone';
+import Campaign from '../models/CampaignModel';
 
-  var CampaignsList = Backbone.Collection.extend({
-    // The model to use with this collection.
-    model: Campaign,
 
-    // The endpoint to hit to populate the collection.
-    url: "/filter",
+var CampaignsList = Backbone.Collection.extend({
+  // The model to use with this collection.
+  model: Campaign,
 
-    // @TODO - Remove, debugging puposes only.
-    initialize: function(){
-        console.log("Movies initialize");
-    }
-  });
+  // The endpoint to hit to populate the collection.
+  url: "/filter",
 
-  return CampaignsList;
+  // @TODO - Remove, debugging puposes only.
+  initialize: function(){
+      console.log("Movies initialize");
+  }
 });
+
+export default CampaignsList;
