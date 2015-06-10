@@ -1,4 +1,4 @@
 node_modules/
 
 # Built assets
-/public/dist
+public/dist

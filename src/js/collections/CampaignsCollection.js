@@ -12,7 +12,7 @@ var CampaignsList = Backbone.Collection.extend({
   model: Campaign,
 
   // The endpoint to hit to populate the collection.
-  url: "/filter",
+  url: "/campaigns",
 
   // @TODO - Remove, debugging puposes only.
   initialize: function(){
