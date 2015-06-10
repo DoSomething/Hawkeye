@@ -15,12 +15,12 @@ var CampaignView = Backbone.View.extend({
     // Called with instatiated.
     initialize: function () {
       console.log("model initialize");
-      console.log(CampaignTemplate({title: "hi"}));
       this.listenTo(this.collection, 'reset', this.render);
     },
 
     render: function () {
       var content = this.model.toJSON();
+      console.log("render model");
       var html = this.template(content);
       return html;
     }

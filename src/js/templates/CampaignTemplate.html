@@ -1,1 +1,18 @@
-<h1><%= title %></h1>
+<!-- TODO -->
+<!--
+  Figure out how to pass a conditonal modifier class that will change color based on cause
+  Pull in:
+    - Cause
+    - Title
+    - web or sms
+    - hours
+    - type
+-->
+<article class="card -orange">
+  <div class="card__bar"></div>
+  <div class="card__body">
+    <p class="card__cause"><%= primary_cause %></p>
+    <h3 class="card__title"><%= title %></h3>
+    <p class="card__meta">web | <%= hours %> | <%= action_type %></p>
+  </div>
+</article>
