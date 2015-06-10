@@ -1,1 +1,4 @@
 node_modules/
+
+# Built assets
+public/dist
