@@ -180,7 +180,7 @@ module.exports = function(grunt) {
         tasks: ["sass:debug", "postcss:debug"]
       },
       js: {
-        files: config.scriptsDir + '/**/*.js',
+        files: config.scriptsDir + '/**/*',
         tasks: ["webpack:debug"]
       },
       assets: {
