@@ -1,6 +1,106 @@
+$card-height: 100px;
+
+@mixin card-color($color) {
+  .card__bar {
+    background-color: $color;
+  }
+
+  .card__cause {
+    color: $color;
+  }
+}
+
 .card {
+  display: table;
   background-color: #FFF;
   width: 220px;
-  height: 100px;
+  min-height: $card-height;
   border: 1px solid grey;
+
+  .card__bar {
+    display: table-cell;
+    width: 10px;
+    // background-color: $cause-color;
+  }
+
+  .card__body {
+    padding: 10px;
+
+    .wrapper {
+      position: relative;
+      min-height: $card-height;
+    }
+  }
+
+  .card__cause {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 10px;
+    // color: $cause-color;
+  }
+
+  .card__title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .card__meta {
+    position: absolute;
+    bottom: 0px;
+  }
+
+  // Default color.
+  @include card-color($default-color);
+
+  &.-education {
+    @include card-color($education);
+  }
+
+  &.-discrimination {
+    @include card-color($discrimination);
+  }
+
+  &.-physical {
+    @include card-color($physical);
+  }
+
+  &.-relationships {
+    @include card-color($relationships);
+  }
+
+  &.-environment {
+    @include card-color($environment);
+  }
+
+  &.-poverty {
+    @include card-color($poverty);
+  }
+
+  &.-homelessness {
+    @include card-color($homelessness);
+  }
+
+  &.-bullying {
+    @include card-color($bullying);
+  }
+
+  &.-animals {
+    @include card-color($animals);
+  }
+
+  &.-disasters {
+    @include card-color($disasters);
+  }
+
+  &.-violence {
+    @include card-color($violence);
+  }
+
+  &.-mental {
+    @include card-color($mental);
+  }
+
+  &.-sex {
+    @include card-color($sex);
+  }
 }

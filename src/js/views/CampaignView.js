@@ -21,7 +21,23 @@ var CampaignView = Backbone.View.extend({
     render: function () {
       var content = this.model.toJSON();
       console.log("render model");
+
+      // Set a class property to use to determine
+      // the color to use for the campaign card.
+      switch (content.primary_cause) {
+        case "physical health":
+          content.cause_class = "physical";
+          break;
+        case "mental health":
+          content.cause_class = "mental";
+          break;
+        default:
+          content.cause_class = content.primary_cause;
+          break;
+      }
+
       var html = this.template(content);
+
       return html;
     }
 })
