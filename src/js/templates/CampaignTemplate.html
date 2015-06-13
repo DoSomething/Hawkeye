@@ -1,1 +1,10 @@
-<h1><%= title %></h1>
+<article class="card -<%= cause_class %>">
+  <div class="card__bar"></div>
+  <div class="card__body">
+    <div class="wrapper">
+      <p class="card__cause"><%= primary_cause %></p>
+      <h3 class="card__title"><%= title %></h3>
+      <p class="card__meta">web | <%= hours %> | <%= action_type %></p>
+    </div>
+  </div>
+</article>

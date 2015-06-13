@@ -1,3 +1,10 @@
-h1 {
-  color: green;
-}
+// Normalize.css
+@import "_reset";
+
+@import "_fonts";
+
+// Variables
+@import "_variables";
+
+// Modules
+@import "_card";
