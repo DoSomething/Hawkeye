@@ -13,3 +13,20 @@ $disasters: #b74c4c;
 $violence: #a1accb;
 $mental: #37c3e0;
 $sex: #5cbe7f;
+
+
+$susy: (
+  columns: 12,
+  gutters: .25,
+  container: 960px,
+  gutter-position: after,
+);
+
+// The 960gs in ems
+// $total-columns: 12;
+// $column-width: 60px;
+// $gutter-width: 20px;
+// $grid-padding: 10px;
+
+// $container-style: magic;
+// $container-width: 60em;

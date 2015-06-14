@@ -43,7 +43,7 @@ var CampaignsView = Backbone.View.extend({
 
   addOne: function(model) {
     console.log("addOne");
-    var view = new CampaignView({ model: model });
+    var view = new CampaignView({model : model});
     $("#app").append(view.render());
   }
 });
