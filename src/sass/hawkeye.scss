@@ -11,6 +11,18 @@
 // Modules
 @import "_card";
 
-#app {
+.container.-main {
   @include container;
+}
+
+hr {
+  background-color: #E3E3E3;
+  height: 8px;
+  border: none;
+}
+
+h2 {
+  font-size: 24px;
+  font-family: "Proxima Nova";
+  padding: 12px 0px;
 }
