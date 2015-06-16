@@ -17,7 +17,6 @@ import CampaignCollection from './collections/CampaignsCollection';
 import AppView from './views/AppView';
 
 $(document).ready(function() {
-  new AppView();
 
   var Router = Backbone.Router.extend({
     routes: {
@@ -26,10 +25,8 @@ $(document).ready(function() {
 
     defaultRoute: function () {
       console.log("defaultRoute");
-      var campaignsCollection = new CampaignCollection();
-      new AppView({ collection: campaignsCollection });
-      campaignsCollection.fetch({reset:true});
-      console.log("right after fetch: " + campaignsCollection.length);
+      // var campaignsCollection = new CampaignCollection();
+      new AppView();
     }
   });
 

@@ -14,9 +14,9 @@ var CampaignsList = Backbone.Collection.extend({
   // The endpoint to hit to populate the collection.
   url: "/campaigns",
 
-  // @TODO - Remove, debugging puposes only.
-  initialize: function(){
-      console.log("Movies initialize");
+  customFilter: function(filters){
+    var results = this.where(filters);
+    return new CampaignsList(results);
   }
 });
 
