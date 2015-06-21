@@ -65,7 +65,15 @@ var AppView = Backbone.View.extend({
   },
 
   events: {
-    "change #filter select": "setFilter"
+    "change #filter select": "setFilter",
+    "change input#title": "searchTitle",
+  },
+
+  searchTitle: function(e) {
+    var letters = e.currentTarget.value;
+    var filtered = this.collection.searchByTitle(letters);
+    var filteredView = new UnscheduledView({collection : filtered});
+    filteredView.render();
   },
 
   setFilter: function (e) {
