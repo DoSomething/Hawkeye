@@ -4,7 +4,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
-import CampaignCollection from '../collections/CampaignsCollection';
+import UnscheduledCollection from '../collections/UnscheduledCollection';
 import UnscheduledTemplate from '../templates/UnscheduledTemplate.html';
 import CampaignView from '../views/CampaignView';
 

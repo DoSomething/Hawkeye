@@ -1,5 +1,6 @@
 /*
  * Creates the Campaigns collection.
+ * @TODO - Rename to unscheduled campagins
  */
 
 import $ from 'jquery';
@@ -7,17 +8,12 @@ import Backbone from 'backbone';
 import Campaign from '../models/CampaignModel';
 
 
-var CampaignsList = Backbone.Collection.extend({
+var UnscheduledCampaigns = Backbone.Collection.extend({
   // The model to use with this collection.
   model: Campaign,
 
   // The endpoint to hit to populate the collection.
-  url: "/campaigns",
-
-  customFilter: function(filters){
-    var results = this.where(filters);
-    return new CampaignsList(results);
-  }
+  url: "/campaigns?date=0",
 });
 
-export default CampaignsList;
+export default UnscheduledCampaigns;

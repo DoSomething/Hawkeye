@@ -4,7 +4,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
-import CampaignCollection from '../collections/CampaignsCollection';
+import UnscheduledCollection from '../collections/UnscheduledCollection';
 import AppTemplate from '../templates/AppTemplate.html';
 import CampaignView from '../views/CampaignView';
 import UnscheduledView from '../views/UnscheduledView';
@@ -19,7 +19,7 @@ var AppView = Backbone.View.extend({
 
   // Set the initialize function that is called when a new instance is created.
   initialize: function () {
-    this.collection = new CampaignCollection();
+    this.collection = new UnscheduledCollection();
     this.collection.fetch({reset:true});
 
     var filteredView = new UnscheduledView({collection : this.collection});
@@ -31,31 +31,37 @@ var AppView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.find("#filter").append(this.createSelect());
+    this.$el.find("#filter").append(this.createFilter("primary_cause"));
+    this.$el.find("#filter").append(this.createFilter("hours"));
+    this.$el.find("#filter").append(this.createFilter("action_type"));
+    this.$el.find("#filter").append(this.createFilter("staff_pick"));
 
     $(this.el).append(this.template());
   },
 
-  getTypes: function () {
-    return _.uniq(this.collection.pluck("primary_cause"), false, function (type) {
-      return type.toLowerCase();
-    });
+  // Get the unique values for every campaign property.
+  getUniqueValues: function(prop) {
+    return _.uniq(this.collection.pluck(prop), false);
   },
 
-  createSelect: function () {
-    var filter = $("body").find("#filter"),
-      select = $("<select/>", {
-        html: "<option>All</option>"
-      });
+  createFilter: function(type) {
+    var filter = $("#main").find("#filter");
+    var label = $("<label>", {
+      html: type + ": "
+    });
+    var select = $("<select/>", {
+      id: type,
+      html: "<option>All</option>"
+    });
 
-    _.each(this.getTypes(), function (item) {
+    _.each(this.getUniqueValues(type), function (item) {
       var option = $("<option/>", {
-        value: item.toLowerCase(),
-        text: item.toLowerCase()
+        value: item,
+        text: item
       }).appendTo(select);
     });
 
-    return select;
+    return label.add(select);
   },
 
   events: {
@@ -63,28 +69,32 @@ var AppView = Backbone.View.extend({
   },
 
   setFilter: function (e) {
-    this.filterType = e.currentTarget.value;
+    var filters = $("#filter select");
+    var filterBy = {};
+
+    $.each(filters, function(key, filter) {
+      var id = $(filter).attr("id");
+      var value = $("#" + id).val();
+
+      if (value !== "All") {
+        filterBy[id] = (id === "hours") ? parseInt(value) : value;
+      }
+    });
+
+    this.filterType = $.extend(this.filterType, filterBy);
     this.trigger("change:filterType");
   },
 
   filterByType: function () {
-    if (this.filterType === "All") {
-      // @TODO - DRY
-      this.collection = new CampaignCollection();
-      this.collection.fetch({reset:true});
+    var filtered = this.collection.where(this.filterType);
 
-      var filteredView = new UnscheduledView({collection : this.collection})
-    }
-    else {
-      var filtered = this.collection.where({primary_cause : this.filterType});
+    var filteredCollection = new Backbone.Collection(filtered);
 
-      var filteredCollection = this.collection.customFilter({
-        primary_cause : this.filterType
-      });
+    var filteredView = new UnscheduledView({collection : filteredCollection});
+    filteredView.render();
 
-      var filteredView = new UnscheduledView({collection : filteredCollection});
-      filteredView.render();
-    }
+    // Reset filter object;
+    this.filterType = {};
   }
 });
 

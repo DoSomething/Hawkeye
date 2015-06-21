@@ -11,7 +11,7 @@ import Backbone from 'backbone';
 import CampaignModel from './models/CampaignModel';
 
 // Collections
-import CampaignCollection from './collections/CampaignsCollection';
+import UnscheduledCollection from './collections/UnscheduledCollection';
 
 // Views
 import AppView from './views/AppView';
@@ -24,8 +24,6 @@ $(document).ready(function() {
     },
 
     defaultRoute: function () {
-      console.log("defaultRoute");
-      // var campaignsCollection = new CampaignCollection();
       new AppView();
     }
   });
