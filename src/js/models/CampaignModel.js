@@ -4,6 +4,15 @@
 
 import Backbone from 'backbone';
 
-var Campaign = Backbone.Model.extend({});
+var Campaign = Backbone.Model.extend({
+  url: "/schedule",
+  // initialize: function () {
+  //   this.on('change', this.scheduleCampaign, this);
+  // },
+
+  // scheduleCampaign: function(e) {
+  //   console.log("scheduleCampaign");
+  // },
+});
 
 export default Campaign;

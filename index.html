@@ -10,6 +10,26 @@
 
   </head>
   <body>
-    <section id="main" class="container"></section>
+    <header>
+      <div class="wrapper">
+        <h2 class="title">Hawkeye</h2>
+        <button type='button' class='button'>Save</button>
+      </div>
+    </header>
+    <div class="container -main">
+      <!-- class="container -section" -->
+      <section id="schedule" class="container -months">
+      </section>
+      <!-- class="container -section" -->
+      <section id="main" class="container -unscheduled">
+        <hr />
+        <h2>Unscheduled Campaigns</h2>
+        <div id="filter">
+          <input type="text" id="title" value="" placeholder="search title" />
+        </div>
+        <div id="campaigns">
+        </div>
+      </section>
+    </div>
   </body>
 </html>
