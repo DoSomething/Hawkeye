@@ -28,29 +28,12 @@ var ScheduledView = Backbone.View.extend({
     // this.listenTo(this.collection, 'addAll', this.addAll);
   },
 
-  // @TODO - DRY this up.
-  events: {
-    "change .card select": "scheduleCampaign",
-  },
-
-  scheduleCampaign: function(e) {
-    var currentTarget = e.currentTarget;
-    var campaignElement = $(currentTarget).closest(".card");
-    var id = campaignElement.attr("id");
-    var date = currentTarget.value;
-
-    var campaignModel = this.collection.get(id);
-    campaignModel.set({ date: date });
-  },
-
   render: function(){
-    console.log("ScheduledView render");
     $(this.el).html(this.template());
     this.addAll();
   },
 
   addAll: function() {
-    console.log("ScheduledView addAll");
     this.collection.each(this.addOne);
   },
 

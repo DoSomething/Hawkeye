@@ -31,7 +31,6 @@ var UnscheduledView = Backbone.View.extend({
   },
 
   render: function(){
-    console.log("unscheduled render");  
     $(this.el).html(this.template());
     this.addAll();
   },

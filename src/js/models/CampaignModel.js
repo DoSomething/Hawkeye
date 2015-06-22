@@ -5,6 +5,7 @@
 import Backbone from 'backbone';
 
 var Campaign = Backbone.Model.extend({
+  url: "/schedule",
   // initialize: function () {
   //   this.on('change', this.scheduleCampaign, this);
   // },

@@ -14,7 +14,7 @@ import ScheduledView from '../views/ScheduledView';
 // Create the view.
 var AppView = Backbone.View.extend({
   // Attach this view to the main app container
-  el: "#main",
+  el: "body",
 
   // Set the template.
   template: AppTemplate,
@@ -34,11 +34,6 @@ var AppView = Backbone.View.extend({
 
   render: function() {
     // @TODO - DRY this up.
-    // Try to move this to the unscheduled view and have this render function just initialize the unscheduled and scheduled views.
-
-    // Get all of the unscheduled campaigns and create a view with them.
-    // var unscheduled = this.collection.where({ date : 0 });
-    // this.unscheduledCollection = new Backbone.Collection(unscheduled);
     var unscheduledView = new UnscheduledView({collection : this.collection});
     unscheduledView.render();
 
@@ -47,6 +42,8 @@ var AppView = Backbone.View.extend({
     this.$el.find("#filter").append(this.createFilter("hours"));
     this.$el.find("#filter").append(this.createFilter("action_type"));
     this.$el.find("#filter").append(this.createFilter("staff_pick"));
+
+    // this.$el.closest("header").append("<button type='button' class='button'>Save</button>");
 
     $(this.el).append(this.template());
 
@@ -91,6 +88,29 @@ var AppView = Backbone.View.extend({
     "change #filter select": "setFilter",
     "change input#title": "searchTitle",
     "change .card select": "scheduleCampaign",
+    "click .button" : "saveSchedule",
+  },
+
+  saveSchedule: function() {
+    var scheduled = this.collection.filter(function (campaign) {
+      var date = campaign.get("date");
+      return date !== 0;
+    });
+
+    _.each(scheduled, function (item) {
+      var id = item.get("id");
+      var date = item.get("date");
+      // item.save({ id : item.get("id"), date : item.get("date")});
+      item.save({ id: id, date: parseInt(date) }, {
+        success: function(model, res) {
+          console.log("success");
+          console.log(res);
+        },
+        error: function() {
+          console.log("error");
+        }
+      });
+    });
   },
 
   scheduleCampaign: function(e) {
