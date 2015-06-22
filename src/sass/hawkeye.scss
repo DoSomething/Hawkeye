@@ -11,96 +11,31 @@
 // Modules
 @import "_card";
 
-.container.-main {
-  @include container;
-  background-color: white;
+.container {
+  &.-main {
+    @include container;
+    background-color: #FFF;
+  }
+
+  &.-section {
+    @include span(15 nest);
+    clear: both;
+  }
+
+  .-scroll {
+    overflow: scroll;
+  }
 }
 
-body {
-  background-color: white;
-}
-
-hr {
-  background-color: #E3E3E3;
+.divider {
+  @include span(15);
+  background-color: $light-gray;
   height: 8px;
   border: none;
 }
 
-h2 {
-  font-size: 24px;
-  font-family: "Proxima Nova";
-  padding: 12px 0px;
-}
-
-#filter {
-  @include span(15 nest);
-  padding: 12px 0px;
-}
-
-section {
-  clear: both;
-}
-
-.container {
-  .-months {
-    // @include span(12);
-    overflow: scroll;
-  }
-
-  .-unscheduled {
-    hr, h2 {
-      @include span(15);
-    }
-  }
-}
-
-.month-wrapper {
-  width: 3840px;
-  @include clearfix;
-}
-
-.month {
-  @include span(4 of 12 nest);
-  // border-right: 3px solid #E3E3E3;
-  // box-sizing: border-box;
-  .card, h2 {
-    @include span(3 of 4);
-  }
-}
-
-// input[type="text"] {
-//   display: block;
-//   margin: 0;
-//   width: 100%;
-//   font-family: sans-serif;
-//   font-size: 18px;
-//   appearance: none;
-//   box-shadow: none;
-//   border-radius: none;
-// }
-// input[type="text"]:focus {
-//   outline: none;
-// }
-
-#filter input[type="text"] {
-  @include span(3);
-  padding: 10px;
-  border: solid 1px #dcdcdc;
-  transition: box-shadow 0.3s, border 0.3s;
-}
-// #filter input[type="text"]:focus,
-// #filter input[type="text"].focus {
-//   border: solid 1px #707070;
-//   box-shadow: 0 0 5px 1px #969696;
-// }
-
-#filter select, #filter label {
-  // @include span(3);
-  padding: 10px;
-}
-
-header {
-  background-color: #4A90E2;
+.header {
+  background-color: $blue;
   height: 60px;
   margin-bottom: 20px;
   padding: 10px;
@@ -109,11 +44,9 @@ header {
     @include container;
   }
 
-  .title {
+  h1 {
     @include span(3);
-    font-weight: bold;
-    font-size: 36px;
-    color: white;
+    padding: 10px 0px;
   }
 
   button {
@@ -121,9 +54,52 @@ header {
   }
 }
 
+h1 {
+  font-weight: bold;
+  font-size: 36px;
+  color: #FFF;
+  font-family: "Proxima Nova","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+h2 {
+  font-family: "Proxima Nova","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 24px;
+  color: $off-black;
+}
+
+.schedule {
+  width: 3840px;
+  @include clearfix;
+
+  .month {
+    @include span(4 of 12 nest);
+
+    .card, h2 {
+      @include span(3 of 4);
+    }
+  }
+}
+
+.filters {
+  @include span(15 nest);
+  clear: both;
+  padding: 12px 0px;
+
+  input[type="text"] {
+    @include span(3);
+    padding: 10px;
+    border: solid 1px $light-gray;
+    transition: box-shadow 0.3s, border 0.3s;
+  }
+
+  select, label {
+    padding: 10px;
+  }
+}
+
 .button {
   display: inline-block;
-  background: #23b7fb;
+  background: $yellow;
   border: 0;
   margin: 0;
   line-height: 1.3;

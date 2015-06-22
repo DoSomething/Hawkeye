@@ -38,10 +38,10 @@ var AppView = Backbone.View.extend({
     unscheduledView.render();
 
     // @TODO - move this into Unscheduled view
-    this.$el.find("#filter").append(this.createFilter("primary_cause"));
-    this.$el.find("#filter").append(this.createFilter("hours"));
-    this.$el.find("#filter").append(this.createFilter("action_type"));
-    this.$el.find("#filter").append(this.createFilter("staff_pick"));
+    this.$el.find("#filters").append(this.createFilter("primary_cause"));
+    this.$el.find("#filters").append(this.createFilter("hours"));
+    this.$el.find("#filters").append(this.createFilter("action_type"));
+    this.$el.find("#filters").append(this.createFilter("staff_pick"));
 
     // this.$el.closest("header").append("<button type='button' class='button'>Save</button>");
 
