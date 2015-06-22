@@ -10,9 +10,6 @@ import Backbone from 'backbone';
 // Models
 import CampaignModel from './models/CampaignModel';
 
-// Collections
-import UnscheduledCollection from './collections/UnscheduledCollection';
-
 // Views
 import AppView from './views/AppView';
 

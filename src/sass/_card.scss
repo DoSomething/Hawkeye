@@ -13,7 +13,7 @@ $card-height: 100px;
 .card {
   display: table;
   background-color: #FFF;
-  @include span(3);
+  @include span(3 of 12);
   min-height: $card-height;
   border: 1px solid #E3E3E3;
   font-family: "Proxima Nova";

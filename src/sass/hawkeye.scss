@@ -13,6 +13,11 @@
 
 .container.-main {
   @include container;
+  background-color: white;
+}
+
+body {
+  background-color: beige;
 }
 
 hr {
@@ -28,5 +33,36 @@ h2 {
 }
 
 #filter {
+  @include span(12);
   padding: 12px 0px;
+}
+
+section {
+  clear: both;
+}
+
+.container {
+  .-months {
+    // @include span(12);
+    overflow: scroll;
+  }
+
+  .-unscheduled {
+    hr, h2 {
+      @include span(12);
+    }
+  }
+}
+
+.month-wrapper {
+  width: 3840px;
+  @include clearfix;
+}
+
+.month {
+  @include span(4 of 12);
+
+  .card {
+    @include span(3 of 4);
+  }
 }

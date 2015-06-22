@@ -4,7 +4,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
-import UnscheduledCollection from '../collections/UnscheduledCollection';
 import UnscheduledTemplate from '../templates/UnscheduledTemplate.html';
 import CampaignView from '../views/CampaignView';
 
@@ -26,6 +25,9 @@ var UnscheduledView = Backbone.View.extend({
 
     // Adds all of the models in this collection to the view when called.
     this.listenTo(this.collection, 'addAll', this.addAll);
+
+    this.listenTo(this.collection, 'change', this.render);
+    // this.collection.bind('add', this.onModelAdded, this);
   },
 
   render: function(){
@@ -38,9 +40,11 @@ var UnscheduledView = Backbone.View.extend({
   },
 
   addOne: function(model) {
-    var view = new CampaignView({model : model});
-    $("#unscheduled").append(view.render());
-  }
+    if (model.get("date") === 0) {
+      var view = new CampaignView({model : model});
+      $("#unscheduled").append(view.render());
+    }
+  },
 });
 
 export default UnscheduledView;

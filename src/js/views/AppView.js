@@ -4,10 +4,12 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
-import UnscheduledCollection from '../collections/UnscheduledCollection';
+import Campaign from '../models/CampaignModel';
+import CampaignsCollection from '../collections/CampaignsCollection';
 import AppTemplate from '../templates/AppTemplate.html';
 import CampaignView from '../views/CampaignView';
 import UnscheduledView from '../views/UnscheduledView';
+import ScheduledView from '../views/ScheduledView';
 
 // Create the view.
 var AppView = Backbone.View.extend({
@@ -19,10 +21,9 @@ var AppView = Backbone.View.extend({
 
   // Set the initialize function that is called when a new instance is created.
   initialize: function () {
-    this.collection = new UnscheduledCollection();
-    this.collection.fetch({reset:true});
-
-    var filteredView = new UnscheduledView({collection : this.collection});
+    // Get all of the campaigns
+    this.collection = new CampaignsCollection();
+    this.collection.fetch({ reset : true });
 
     // Bind the reset listener to the view, so when the collection is updated the view is re-renderd
     this.listenTo(this.collection, 'reset', this.render);
@@ -30,13 +31,34 @@ var AppView = Backbone.View.extend({
     this.on("change:filterType", this.filterByType, this);
   },
 
-  render: function(){
+  render: function() {
+    // @TODO - DRY this up.
+    // Try to move this to the unscheduled view and have this render function just initialize the unscheduled and scheduled views.
+
+    // Get all of the unscheduled campaigns and create a view with them.
+    // var unscheduled = this.collection.where({ date : 0 });
+    // this.unscheduledCollection = new Backbone.Collection(unscheduled);
+    var unscheduledView = new UnscheduledView({collection : this.collection});
+    unscheduledView.render();
+
+    // @TODO - move this into Unscheduled view
     this.$el.find("#filter").append(this.createFilter("primary_cause"));
     this.$el.find("#filter").append(this.createFilter("hours"));
     this.$el.find("#filter").append(this.createFilter("action_type"));
     this.$el.find("#filter").append(this.createFilter("staff_pick"));
 
     $(this.el).append(this.template());
+
+
+    // Get all of the Scheduled campaigns and create a view with them.
+    // var scheduled = this.collection.filter(function (campaign) {
+    //   var date = campaign.get("date");
+    //   return date !== 0;
+    // });
+    // this.scheduledCollection = new Backbone.Collection(scheduled);
+    var scheduledView = new ScheduledView({collection : this.collection});
+    scheduledView.render();
+
   },
 
   // Get the unique values for every campaign property.
@@ -67,6 +89,18 @@ var AppView = Backbone.View.extend({
   events: {
     "change #filter select": "setFilter",
     "change input#title": "searchTitle",
+    "change .card select": "scheduleCampaign",
+  },
+
+  scheduleCampaign: function(e) {
+    console.log("scheduleCampaign triggered");
+    var currentTarget = e.currentTarget;
+    var campaignElement = $(currentTarget).closest(".card");
+    var id = campaignElement.attr("id");
+    var date = currentTarget.value;
+
+    var campaignModel = this.collection.get(id);
+    campaignModel.set({ date: date });
   },
 
   searchTitle: function(e) {

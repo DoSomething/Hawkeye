@@ -9,12 +9,12 @@ import Backbone from 'backbone';
 import Campaign from '../models/CampaignModel';
 
 
-var UnscheduledCampaigns = Backbone.Collection.extend({
+var Campaigns = Backbone.Collection.extend({
   // The model to use with this collection.
   model: Campaign,
 
   // The endpoint to hit to populate the collection.
-  url: "/campaigns?date=0",
+  url: "/campaigns",
 
   // @TODO - Move filtering here so that it also returns a collection.
   searchByTitle : function(letters) {
@@ -28,4 +28,4 @@ var UnscheduledCampaigns = Backbone.Collection.extend({
   }
 });
 
-export default UnscheduledCampaigns;
+export default Campaigns;

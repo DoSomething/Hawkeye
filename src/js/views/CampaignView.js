@@ -7,15 +7,13 @@ import _ from 'underscore';
 import CampaignTemplate from '../templates/CampaignTemplate.html';
 
 var CampaignView = Backbone.View.extend({
-  // Will wrap each view in an li tag.
-  tagName: "li",
+  // el: 'body',
 
   // Set the template.
   template: CampaignTemplate,
 
-  // Called with instatiated.
   initialize: function () {
-    this.listenTo(this.collection, 'reset', this.render);
+    // this.on('change', this.scheduleCampaign, this);
   },
 
   render: function () {
@@ -38,7 +36,15 @@ var CampaignView = Backbone.View.extend({
     var html = this.template(content);
 
     return html;
-  }
+  },
+
+  // events: {
+  //   "change .card select": "scheduleCampaign",
+  // },
+
+  // scheduleCampaign: function(e) {
+  //   console.log(e.currentTarget.value);
+  // }
 });
 
 export default CampaignView;

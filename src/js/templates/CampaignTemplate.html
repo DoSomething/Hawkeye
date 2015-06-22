@@ -1,10 +1,11 @@
-<article class="card -<%= cause_class %>">
+<article id="<%= id %>" class="card -<%= cause_class %>">
   <div class="card__bar"></div>
   <div class="card__body">
     <div class="wrapper">
       <p class="card__cause"><%= primary_cause %></p>
       <h3 class="card__title"><%= title %></h3>
       <select>
+        <option value="0">Unschedule</option>
         <option value="1">January</option>
         <option value="2">February</option>
         <option value="3">March</option>
