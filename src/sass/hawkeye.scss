@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: beige;
+  background-color: white;
 }
 
 hr {
@@ -33,7 +33,7 @@ h2 {
 }
 
 #filter {
-  @include span(12);
+  @include span(15 nest);
   padding: 12px 0px;
 }
 
@@ -49,7 +49,7 @@ section {
 
   .-unscheduled {
     hr, h2 {
-      @include span(12);
+      @include span(15);
     }
   }
 }
@@ -60,9 +60,41 @@ section {
 }
 
 .month {
-  @include span(4 of 12);
-
-  .card {
+  @include span(4 of 12 nest);
+  // border-right: 3px solid #E3E3E3;
+  // box-sizing: border-box;
+  .card, h2 {
     @include span(3 of 4);
   }
+}
+
+// input[type="text"] {
+//   display: block;
+//   margin: 0;
+//   width: 100%;
+//   font-family: sans-serif;
+//   font-size: 18px;
+//   appearance: none;
+//   box-shadow: none;
+//   border-radius: none;
+// }
+// input[type="text"]:focus {
+//   outline: none;
+// }
+
+#filter input[type="text"] {
+  @include span(3);
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+// #filter input[type="text"]:focus,
+// #filter input[type="text"].focus {
+//   border: solid 1px #707070;
+//   box-shadow: 0 0 5px 1px #969696;
+// }
+
+#filter select, #filter label {
+  // @include span(3);
+  padding: 10px;
 }

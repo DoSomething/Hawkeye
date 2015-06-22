@@ -27,6 +27,7 @@ var AppView = Backbone.View.extend({
 
     // Bind the reset listener to the view, so when the collection is updated the view is re-renderd
     this.listenTo(this.collection, 'reset', this.render);
+    // this.listenTo(this.collection, 'change', this.delegateEvents);
 
     this.on("change:filterType", this.filterByType, this);
   },
@@ -93,7 +94,6 @@ var AppView = Backbone.View.extend({
   },
 
   scheduleCampaign: function(e) {
-    console.log("scheduleCampaign triggered");
     var currentTarget = e.currentTarget;
     var campaignElement = $(currentTarget).closest(".card");
     var id = campaignElement.attr("id");

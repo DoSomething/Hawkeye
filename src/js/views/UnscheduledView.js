@@ -31,6 +31,7 @@ var UnscheduledView = Backbone.View.extend({
   },
 
   render: function(){
+    console.log("unscheduled render");  
     $(this.el).html(this.template());
     this.addAll();
   },
@@ -40,7 +41,7 @@ var UnscheduledView = Backbone.View.extend({
   },
 
   addOne: function(model) {
-    if (model.get("date") === 0) {
+    if (parseInt(model.get("date")) === 0) {
       var view = new CampaignView({model : model});
       $("#unscheduled").append(view.render());
     }
