@@ -29,7 +29,8 @@ var AppView = Backbone.View.extend({
     this.listenTo(this.collection, 'reset', this.render);
     // this.listenTo(this.collection, 'change', this.delegateEvents);
 
-    this.on("change:filterType", this.filterByType, this);
+    this.on("change:filterUnscheduled", this.filterUnscheduled, this);
+    this.on("change:filterScheduled", this.filterScheduled, this);
   },
 
   render: function() {
@@ -43,17 +44,14 @@ var AppView = Backbone.View.extend({
     this.$el.find("#filters").append(this.createFilter("action_type"));
     this.$el.find("#filters").append(this.createFilter("staff_pick"));
 
-    // this.$el.closest("header").append("<button type='button' class='button'>Save</button>");
+
+    this.$el.find("#filters-schedule").append(this.createFilter("primary_cause"));
+    this.$el.find("#filters-schedule").append(this.createFilter("hours"));
+    this.$el.find("#filters-schedule").append(this.createFilter("action_type"));
+    this.$el.find("#filters-schedule").append(this.createFilter("staff_pick"));
 
     $(this.el).append(this.template());
 
-
-    // Get all of the Scheduled campaigns and create a view with them.
-    // var scheduled = this.collection.filter(function (campaign) {
-    //   var date = campaign.get("date");
-    //   return date !== 0;
-    // });
-    // this.scheduledCollection = new Backbone.Collection(scheduled);
     var scheduledView = new ScheduledView({collection : this.collection});
     scheduledView.render();
 
@@ -65,7 +63,6 @@ var AppView = Backbone.View.extend({
   },
 
   createFilter: function(type) {
-    var filter = $("#main").find("#filter");
     var label = $("<label>", {
       html: type + ": "
     });
@@ -85,8 +82,10 @@ var AppView = Backbone.View.extend({
   },
 
   events: {
-    "change #filter select": "setFilter",
-    "change input#title": "searchTitle",
+    "change #filters select": "setFilter",
+    "change #filters-schedule select": "setScheduleFilter",
+    "change #filters input": "searchUnscheduledTitle",
+    "change #filters-schedule input": "searchScheduledTitle",
     "change .card select": "scheduleCampaign",
     "click .button" : "saveSchedule",
   },
@@ -100,7 +99,6 @@ var AppView = Backbone.View.extend({
     _.each(scheduled, function (item) {
       var id = item.get("id");
       var date = item.get("date");
-      // item.save({ id : item.get("id"), date : item.get("date")});
       item.save({ id: id, date: parseInt(date) }, {
         success: function(model, res) {
           console.log("success");
@@ -123,36 +121,78 @@ var AppView = Backbone.View.extend({
     campaignModel.set({ date: date });
   },
 
-  searchTitle: function(e) {
+  searchUnscheduledTitle: function(e) {
+    console.log("searchTitle");
     var letters = e.currentTarget.value;
     var filtered = this.collection.searchByTitle(letters);
     var filteredView = new UnscheduledView({collection : filtered});
     filteredView.render();
   },
 
+  searchScheduledTitle: function(e) {
+    console.log("searchTitle");
+    var letters = e.currentTarget.value;
+    var filtered = this.collection.searchByTitle(letters);
+    var filteredView = new ScheduledView({collection : filtered});
+    filteredView.render();
+  },
+
   setFilter: function (e) {
-    var filters = $("#filter select");
+    console.log("setFilter");
+    var filters = $("#filters select");
     var filterBy = {};
 
     $.each(filters, function(key, filter) {
       var id = $(filter).attr("id");
-      var value = $("#" + id).val();
-
+      var value = $("#filters #" + id).val();
+      console.log(value);
       if (value !== "All") {
         filterBy[id] = (id === "hours") ? parseInt(value) : value;
       }
     });
 
     this.filterType = $.extend(this.filterType, filterBy);
-    this.trigger("change:filterType");
+    this.trigger("change:filterUnscheduled");
   },
 
-  filterByType: function () {
+  setScheduleFilter: function(e) {
+    console.log("setScheduleFilter");
+    var filters = $("#filters-schedule select");
+    var filterBy = {};
+
+    $.each(filters, function(key, filter) {
+      var id = $(filter).attr("id");
+      var value = $("#filters-schedule #" + id).val();
+      console.log(value);
+      if (value !== "All") {
+        filterBy[id] = (id === "hours") ? parseInt(value) : value;
+      }
+    });
+
+    this.filterType = $.extend(this.filterType, filterBy);
+    this.trigger("change:filterScheduled");
+  },
+
+  filterUnscheduled: function () {
+    console.log(this.filterType);
     var filtered = this.collection.where(this.filterType);
 
     var filteredCollection = new Backbone.Collection(filtered);
 
     var filteredView = new UnscheduledView({collection : filteredCollection});
+    filteredView.render();
+
+    // Reset filter object;
+    this.filterType = {};
+  },
+
+  filterScheduled: function () {
+    console.log(this.filterType);
+    var filtered = this.collection.where(this.filterType);
+
+    var filteredCollection = new Backbone.Collection(filtered);
+
+    var filteredView = new ScheduledView({collection : filteredCollection});
     filteredView.render();
 
     // Reset filter object;

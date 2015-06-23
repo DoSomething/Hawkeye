@@ -24,6 +24,7 @@
 
   .-scroll {
     overflow: scroll;
+    // overflow-x: hidden;
   }
 }
 
@@ -68,14 +69,24 @@ h2 {
 }
 
 .schedule {
-  width: 3840px;
+  //@TODO - more programatic approach needed
+  width: 3852px;
+  clear: both;
   @include clearfix;
 
   .month {
     @include span(4 of 12 nest);
+    height: 400px;
+    overflow-y: scroll;
+    border-right: 1px solid $light-gray;
 
-    .card, h2 {
+    .card {
       @include span(3 of 4);
+    }
+
+    .heading {
+      @include span(3 of 4);
+      padding: 10px 0px;
     }
   }
 }
