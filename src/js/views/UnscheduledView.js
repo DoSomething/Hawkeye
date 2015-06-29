@@ -4,19 +4,15 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
-import UnscheduledTemplate from '../templates/UnscheduledTemplate.html';
 import CampaignView from '../views/CampaignView';
 
 // Create the view.
 var UnscheduledView = Backbone.View.extend({
-  el: "#campaigns",
-
-  // Set the template.
-  // @TODO - might not need this.
-  template: UnscheduledTemplate,
+  el: "#unscheduled-campaigns",
 
   // Set the initialize function that is called when a new instance is created.
   initialize: function () {
+    console.log(this.collection);
     // Bind the reset listener to the view, so when the collection is updated the view is re-renderd
     this.listenTo(this.collection, 'reset', this.render);
 
@@ -27,12 +23,10 @@ var UnscheduledView = Backbone.View.extend({
     this.listenTo(this.collection, 'addAll', this.addAll);
 
     this.listenTo(this.collection, 'change', this.render);
-    // this.collection.bind('add', this.onModelAdded, this);
   },
 
   render: function(){
-    console.log("unscheduled render");
-    $(this.el).html(this.template());
+    $(this.el).empty();
     this.addAll();
   },
 
@@ -43,7 +37,6 @@ var UnscheduledView = Backbone.View.extend({
   addOne: function(model) {
     if (parseInt(model.get("date")) === 0) {
       var view = new CampaignView({model : model});
-      //this.$el
       $("#unscheduled-campaigns").append(view.render());
     }
   },
